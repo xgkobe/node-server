@@ -21,6 +21,8 @@ app.get('/', (req: any,res: any) => {
     res.end(html);
 });
 
+// 这里要注意，如果要测试etag，请记得开启浏览器的停用缓存
+// 'max-age=3000,no-cache'，每次使用缓存之前，客户端必须向服务器验证资源是否仍然有效
 app.get('/hello.js', (req: any,res: any) => {
     const etag = req.headers['if-none-match'];
     if(etag === '456') {
